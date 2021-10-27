@@ -144,4 +144,28 @@ public class LinkTools {
             else return min;
         }
     }
+
+    public static void delDuplicate(LinkListClass<Integer> a) {
+        LinkNode<Integer> pre = a.head;
+        LinkNode<Integer> cur = a.head.next;
+        LinkNode<Integer> next;
+        boolean flag = false;
+
+        while (cur != null) {
+            flag = false;
+            next = cur.next;
+            while (next.data == cur.data && next != null) {
+                pre.next = next;
+                cur = next;
+                next = cur.next;
+                flag = true;
+            }
+            if (flag) {
+                pre.next = next;
+            } else {
+                pre = cur;
+            }
+            cur = next;
+        }
+    }
 }
